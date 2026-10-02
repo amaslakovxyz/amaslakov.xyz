@@ -22,8 +22,8 @@ vendor-htmx:
         -o src/blog/web/static/htmx.min.js
 
 REMOTE_PATH := "/srv/blog-xyz"
-REMOTE_USER := "exo"
-REMOTE_HOST := "amaslakov.xyz"
+REMOTE_USER := env_var_or_default("VPS_USER", "exo")
+REMOTE_HOST := env_var_or_default("VPS_HOST", "142.93.162.168")
 
 _deploy_excludes := "--exclude='.git/' --exclude='.venv/' --exclude='__pycache__/' --exclude='.pytest_cache/' --exclude='.mypy_cache/' --exclude='.ruff_cache/' --exclude='.DS_Store'"
 

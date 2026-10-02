@@ -1,0 +1,12 @@
+{% extends "shared/base.html" %}
+{% block title %}{{ post.meta.title }} · {{ site.title }}{% endblock %}
+{% block content %}
+<article class="post">
+  <h1>{{ post.meta.title }}</h1>
+  <time datetime="{{ post.meta.date.isoformat() }}">{{ post.meta.date.isoformat() }}</time>
+  {% if post.meta.tags %}
+  <div class="tags">{% for t in post.meta.tags %}<span class="tag">{{ t }}</span>{% endfor %}</div>
+  {% endif %}
+  <div class="prose">{{ post.html | safe }}</div>
+</article>
+{% endblock %}

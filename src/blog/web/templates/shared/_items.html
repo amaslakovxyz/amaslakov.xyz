@@ -1,0 +1,11 @@
+<ul class="post-list">
+{% for post in posts %}
+  <li>
+    <a href="/{{ site.collection }}/{{ post.meta.slug }}">{{ post.meta.title }}</a>
+    <time datetime="{{ post.meta.date.isoformat() }}">{{ post.meta.date.isoformat() }}</time>
+    {% if post.meta.summary %}<p>{{ post.meta.summary }}</p>{% endif %}
+  </li>
+{% else %}
+  <li class="empty">Nothing here yet.</li>
+{% endfor %}
+</ul>

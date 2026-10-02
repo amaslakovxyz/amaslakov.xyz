@@ -1,0 +1,19 @@
+{% extends "shared/base.html" %}
+{% block title %}{{ site.collection }} · {{ site.title }}{% endblock %}
+{% block content %}
+<h1>{{ site.collection }}</h1>
+{% if tags %}
+<div class="tags">
+  <a class="tag {% if not active_tag %}active{% endif %}" href="/{{ site.collection }}"
+     hx-get="/{{ site.collection }}" hx-target="#items" hx-push-url="true">all</a>
+  {% for t in tags %}
+  <a class="tag {% if t == active_tag %}active{% endif %}"
+     href="/{{ site.collection }}?tag={{ t }}"
+     hx-get="/{{ site.collection }}?tag={{ t }}" hx-target="#items" hx-push-url="true">{{ t }}</a>
+  {% endfor %}
+</div>
+{% endif %}
+<div id="items">
+{% include "shared/_items.html" %}
+</div>
+{% endblock %}

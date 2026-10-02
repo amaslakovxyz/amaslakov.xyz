@@ -1,0 +1,10 @@
+/* amaslakov.xyz — warm, playful, dark-first. */
+:root {
+  --bg: #14100e; --fg: #f2e9e1; --muted: #b8a99b; --accent: #e8a06a;
+  --border: #2a2320; --code-bg: #1d1815;
+}
+:root[data-theme="light"] {
+  --bg: #fbf7f2; --fg: #2a211b; --muted: #7a6a5c; --accent: #c2673a;
+  --border: #eaded1; --code-bg: #f3ebe1;
+}
+.brand { font-weight: 700; letter-spacing: .02em; }

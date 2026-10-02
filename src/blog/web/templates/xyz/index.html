@@ -1,0 +1,15 @@
+{% extends "shared/base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>{{ site.title }}</h1>
+  <p>{{ site.tagline }}</p>
+  <p class="placeholder">[ landing placeholder — design later ]</p>
+  <p><a href="/{{ site.collection }}">Essays</a></p>
+</section>
+{% if posts %}
+<section class="recent">
+  <h2>Latest</h2>
+  {% include "shared/_items.html" %}
+</section>
+{% endif %}
+{% endblock %}

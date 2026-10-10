@@ -1,0 +1,8 @@
+---
+- name: Deploy amaslakov.xyz on the runner host
+  hosts: localhost
+  gather_facts: false
+  become: false
+
+  roles:
+    - blog_xyz_release

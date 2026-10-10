@@ -1,0 +1,52 @@
+---
+- name: Identify the runner account
+  ansible.builtin.command:
+    argv: [id, -un]
+  register: blog_xyz_runner_account
+  changed_when: false
+
+- name: Require the provisioned runner account
+  ansible.builtin.assert:
+    that:
+      - blog_xyz_runner_account.stdout == blog_xyz_runner_user
+    fail_msg: "Deploy must run as {{ blog_xyz_runner_user }}."
+
+- name: Require the pinned Ansible core runtime
+  ansible.builtin.assert:
+    that:
+      - ansible_version.full == blog_xyz_ansible_core_version
+    fail_msg: "ansible-core {{ blog_xyz_ansible_core_version }} required; got {{ ansible_version.full }}."
+
+- name: Check uv is installed at expected path
+  ansible.builtin.command:
+    argv: ["{{ blog_xyz_uv_bin }}", --version]
+  changed_when: false
+
+- name: Inspect the service root directory
+  ansible.builtin.stat:
+    path: "{{ blog_xyz_service_root }}"
+    get_checksum: false
+  register: blog_xyz_service_root_stat
+
+- name: Require a writable service root directory
+  ansible.builtin.assert:
+    that:
+      - blog_xyz_service_root_stat.stat.exists
+      - blog_xyz_service_root_stat.stat.isdir | default(false)
+      - blog_xyz_service_root_stat.stat.writeable | default(false)
+    fail_msg: >-
+      Provision {{ blog_xyz_service_root }} before deploying:
+      sudo mkdir -p {{ blog_xyz_service_root }} && sudo chown {{ blog_xyz_runner_user }}:{{ blog_xyz_runner_user }} {{ blog_xyz_service_root }}
+
+- name: Inspect the source directory
+  ansible.builtin.stat:
+    path: "{{ blog_xyz_source_dir }}"
+    get_checksum: false
+  register: blog_xyz_source_dir_stat
+
+- name: Require source directory to exist
+  ansible.builtin.assert:
+    that:
+      - blog_xyz_source_dir_stat.stat.exists
+      - blog_xyz_source_dir_stat.stat.isdir | default(false)
+    fail_msg: "Source directory {{ blog_xyz_source_dir }} does not exist."

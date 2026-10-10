@@ -1,0 +1,18 @@
+---
+- name: Sync blog source to service root
+  ansible.builtin.command:
+    argv:
+      - rsync
+      - -az
+      - --delete
+      - "--exclude=.git/"
+      - "--exclude=.venv/"
+      - "--exclude=__pycache__/"
+      - "--exclude=.pytest_cache/"
+      - "--exclude=.mypy_cache/"
+      - "--exclude=.ruff_cache/"
+      - "--exclude=.DS_Store"
+      - "--exclude=.github/"
+      - "{{ blog_xyz_source_dir }}/"
+      - "{{ blog_xyz_service_root }}/"
+  changed_when: true

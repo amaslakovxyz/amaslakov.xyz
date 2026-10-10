@@ -1,0 +1,15 @@
+---
+- name: Verify application responds with HTTP 200
+  ansible.builtin.uri:
+    url: "{{ blog_xyz_health_url }}"
+    method: GET
+    status_code: 200
+    timeout: "{{ blog_xyz_health_timeout }}"
+    validate_certs: true
+    follow_redirects: safe
+    return_content: false
+  register: blog_xyz_health_result
+  retries: "{{ blog_xyz_health_retries }}"
+  delay: "{{ blog_xyz_health_delay }}"
+  until: blog_xyz_health_result.status == 200
+  changed_when: false

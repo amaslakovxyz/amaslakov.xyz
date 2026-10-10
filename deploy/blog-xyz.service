@@ -1,0 +1,15 @@
+[Unit]
+Description=amaslakov.xyz blog — FastAPI + uvicorn
+After=network.target
+
+[Service]
+Type=simple
+User=exo
+WorkingDirectory=/srv/blog-xyz
+ExecStart=/home/exo/.local/bin/uv run uvicorn blog.shell.app:app --host 127.0.0.1 --port 8734
+Restart=on-failure
+RestartSec=5
+Environment=BLOG_CONTENT_ROOT=/srv/blog-xyz/content/
+
+[Install]
+WantedBy=multi-user.target

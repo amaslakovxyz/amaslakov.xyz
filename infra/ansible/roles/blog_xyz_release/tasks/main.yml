@@ -1,0 +1,12 @@
+---
+- name: Check deployment prerequisites
+  ansible.builtin.import_tasks: preflight.yml
+
+- name: Sync source files to service root
+  ansible.builtin.import_tasks: sync.yml
+
+- name: Install deps and restart service
+  ansible.builtin.import_tasks: activate.yml
+
+- name: Verify application health
+  ansible.builtin.import_tasks: verify.yml

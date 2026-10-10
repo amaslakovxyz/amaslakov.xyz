@@ -1,0 +1,12 @@
+---
+# Passed as --extra-vars from CI; falls back to two levels above playbook for local runs
+blog_xyz_source_dir: "{{ playbook_dir + '/../..' }}"
+blog_xyz_service_root: /srv/blog-xyz
+blog_xyz_service_name: blog-xyz
+blog_xyz_uv_bin: /home/exo/.local/bin/uv
+blog_xyz_runner_user: exo
+blog_xyz_ansible_core_version: "2.21.5"
+blog_xyz_health_url: https://amaslakov.xyz/
+blog_xyz_health_retries: 6
+blog_xyz_health_delay: 5
+blog_xyz_health_timeout: 10

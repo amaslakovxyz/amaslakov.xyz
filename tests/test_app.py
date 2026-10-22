@@ -79,6 +79,14 @@ def test_home_renders_hero() -> None:
     assert ">rss<" not in r.text  # rss not surfaced yet
 
 
+def test_home_has_travel_map() -> None:
+    r = client.get("/", headers=XYZ)
+    assert "travelmap" in r.text
+    assert "Lisbon, PT" in r.text  # a travel-log point
+    assert "mp-coords" in r.text  # hover detail panel
+    assert "book-btn" not in r.text  # booking hidden until booking_url is set
+
+
 def test_feed_served() -> None:
     r = client.get("/feed.xml", headers=XYZ)
     assert r.status_code == 200

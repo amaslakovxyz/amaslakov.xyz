@@ -19,6 +19,43 @@
     </div>
   </div>
 
+  {% if plotted %}
+  {% set dot = ['var(--c-violet)','var(--c-blue)','var(--c-cyan)','var(--c-pink)','var(--c-green)','var(--c-yellow)'] %}
+  <figure class="travelmap">
+    <figcaption class="map-cap">~ cat travel.log <span class="dim">· hover a point</span></figcaption>
+    <div class="map-wrap">
+      <svg viewBox="0 0 {{ map_w }} {{ map_h }}" class="map-svg" role="img"
+           aria-label="Map of places I have been">
+        <defs>
+          <pattern id="mdots" width="24" height="24" patternUnits="userSpaceOnUse">
+            <circle cx="1.5" cy="1.5" r="1" fill="var(--border)"/>
+          </pattern>
+          <filter id="mglow"><feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="{{ map_w }}" height="{{ map_h }}" fill="url(#mdots)"/>
+        <polyline points="{% for p in plotted %}{{ p.x }},{{ p.y }} {% endfor %}"
+                  fill="none" stroke="var(--accent)" stroke-width="1.5"
+                  stroke-opacity=".5" stroke-dasharray="4 5"/>
+        {% for p in plotted %}
+        <g class="tp{% if loop.last %} tp-now{% endif %}" tabindex="0" role="button"
+           aria-label="{{ p.label }}, {{ p.coords }}, {{ p.when }}"
+           data-label="{{ p.label }}" data-coords="{{ p.coords }}" data-when="{{ p.when }}">
+          <circle class="tp-dot" cx="{{ p.x }}" cy="{{ p.y }}" r="5"
+                  fill="{{ dot[loop.index0 % 6] }}" filter="url(#mglow)"/>
+          <circle class="tp-hit" cx="{{ p.x }}" cy="{{ p.y }}" r="15" fill="transparent"/>
+        </g>
+        {% endfor %}
+      </svg>
+      <div class="map-panel" aria-live="polite">
+        <div class="mp-label" id="mp-label"></div>
+        <div class="mp-coords" id="mp-coords"></div>
+        <div class="mp-when" id="mp-when"></div>
+      </div>
+    </div>
+  </figure>
+  {% endif %}
+
   <div class="hero-links">
     {% if site.links.github %}<a href="{{ site.links.github }}" style="color:var(--c-violet)">github</a>{% endif %}
     {% if site.links.linkedin %}<a href="{{ site.links.linkedin }}" style="color:var(--c-blue)">linkedin</a>{% endif %}
@@ -26,19 +63,42 @@
     {% if site.links.telegram %}<a href="{{ site.links.telegram }}" style="color:var(--c-cyan)">telegram</a>{% endif %}
     {% if site.links.email %}<a href="{{ site.links.email }}" style="color:var(--c-yellow)">email</a>{% endif %}
   </div>
+
+  {% if site.booking_url %}
+  <p class="book-line">
+    <a class="book-btn" href="{{ site.booking_url }}" target="_blank" rel="noopener">◷ book a slot →</a>
+  </p>
+  {% endif %}
 </section>
 
 <script>
 (function(){
-  var el=document.getElementById('clk'); if(!el) return;
-  var tz=el.dataset.tz;
-  function tick(){
-    try{
-      el.textContent=new Intl.DateTimeFormat('en-GB',
-        {timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date());
-    }catch(e){ el.textContent='--:--:--'; }
+  var el=document.getElementById('clk');
+  if(el){
+    var tz=el.dataset.tz;
+    function tick(){
+      try{
+        el.textContent=new Intl.DateTimeFormat('en-GB',
+          {timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date());
+      }catch(e){ el.textContent='--:--:--'; }
+    }
+    tick(); setInterval(tick,1000);
   }
-  tick(); setInterval(tick,1000);
+
+  var lab=document.getElementById('mp-label');
+  var nodes=document.querySelectorAll('.tp');
+  if(lab && nodes.length){
+    var co=document.getElementById('mp-coords'), wh=document.getElementById('mp-when');
+    function show(g){ lab.textContent=g.dataset.label; co.textContent=g.dataset.coords; wh.textContent=g.dataset.when; }
+    var current=nodes[nodes.length-1];
+    show(current);
+    nodes.forEach(function(g){
+      function on(){ show(g); g.classList.add('on'); }
+      function off(){ g.classList.remove('on'); show(current); }
+      g.addEventListener('mouseenter',on); g.addEventListener('focus',on);
+      g.addEventListener('mouseleave',off); g.addEventListener('blur',off);
+    });
+  }
 })();
 </script>
 {% endblock %}

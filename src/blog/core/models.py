@@ -27,6 +27,15 @@ class Links:
 
 
 @dataclass(frozen=True, slots=True)
+class TravelPoint:
+    label: str  # e.g. "Tbilisi, GE"
+    coords: str  # display string, e.g. "41.7°N 44.8°E"
+    when: str  # e.g. "2024" or "2024-06"
+    lat: float  # for map projection
+    lon: float
+
+
+@dataclass(frozen=True, slots=True)
 class SiteConfig:
     site_id: SiteId
     domain: str
@@ -40,6 +49,8 @@ class SiteConfig:
     stack: tuple[str, ...] = ()
     location: Location | None = None
     links: Links = Links()
+    travel: tuple[TravelPoint, ...] = ()
+    booking_url: str | None = None  # e.g. "https://cal.com/amaslakov/30min"
 
 
 @dataclass(frozen=True, slots=True)

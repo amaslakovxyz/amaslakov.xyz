@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from blog.core.models import Links, Location, SiteConfig, SiteId
+from blog.core.models import Links, Location, SiteConfig, SiteId, TravelPoint
 
 SITES: dict[SiteId, SiteConfig] = {
     "xyz": SiteConfig(
@@ -23,6 +23,16 @@ SITES: dict[SiteId, SiteConfig] = {
             telegram="https://t.me/amaslakovxyz",
             email="mailto:amaslakov@icloud.com",
         ),
+        # Placeholder travel log — edit in sites.py (chronological order).
+        travel=(
+            TravelPoint("Lisbon, PT", "38.7°N 9.1°W", "2022", lat=38.7, lon=-9.1),
+            TravelPoint("Belgrade, RS", "44.8°N 20.5°E", "2023", lat=44.8, lon=20.5),
+            TravelPoint("Bali, ID", "8.3°S 115.1°E", "2023", lat=-8.3, lon=115.1),
+            TravelPoint("Yerevan, AM", "40.2°N 44.5°E", "2023", lat=40.2, lon=44.5),
+            TravelPoint("Tbilisi, GE", "41.7°N 44.8°E", "2024 · now", lat=41.7, lon=44.8),
+        ),
+        # Set after creating a Cal.com event, e.g. "https://cal.com/amaslakov/30min".
+        booking_url=None,
     ),
 }
 

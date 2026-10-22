@@ -14,6 +14,7 @@ from blog.core.feed import render_feed
 from blog.core.models import Post, SiteConfig
 from blog.core.sitemap import render_sitemap
 from blog.core.sites import SITES, resolve_site
+from blog.core.travelmap import plot_points
 from blog.shell.buildinfo import build_status
 from blog.shell.config import Settings, get_settings
 from blog.shell.loader import load_posts
@@ -48,8 +49,12 @@ def create_app() -> FastAPI:
     def index(request: Request) -> Response:
         site = _site_for(request)
         posts = _load(request, site)
+        plotted = plot_points(site.travel, width=600, height=240, pad=30)
         return _templates.TemplateResponse(
-            request, f"{site.site_id}/index.html", {"site": site, "posts": posts[:5]}
+            request,
+            f"{site.site_id}/index.html",
+            {"site": site, "posts": posts[:5], "plotted": plotted,
+             "map_w": 600, "map_h": 240},
         )
 
 

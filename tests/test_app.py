@@ -37,6 +37,16 @@ def test_missing_post_is_404() -> None:
     assert client.get("/essays/nope", headers=XYZ).status_code == 404
 
 
+def test_home_renders_hero() -> None:
+    r = client.get("/", headers=XYZ)
+    assert r.status_code == 200
+    assert "whoami" in r.text
+    assert "Anton Maslakov" in r.text
+    assert "Asia/Tbilisi" in r.text  # tz handed to the live clock
+    assert "Python" in r.text  # stack row
+    assert "anton-pixel.png" in r.text  # pixel-art avatar
+
+
 def test_feed_served() -> None:
     r = client.get("/feed.xml", headers=XYZ)
     assert r.status_code == 200

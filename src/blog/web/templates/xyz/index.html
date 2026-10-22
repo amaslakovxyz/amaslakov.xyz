@@ -1,15 +1,65 @@
 {% extends "shared/base.html" %}
 {% block content %}
-<section class="hero">
-  <h1>{{ site.title }}</h1>
-  <p>{{ site.tagline }}</p>
-  <p class="placeholder">[ landing placeholder — design later ]</p>
-  <p><a href="/{{ site.collection }}">Essays</a></p>
+<section class="hero anim">
+  <p class="prompt"><span class="c">~</span> whoami<span class="cursor">&nbsp;</span></p>
+  <h1 class="name">{{ site.author }}</h1>
+
+  <div class="nf">
+    <img class="avatar" src="/static/img/anton-pixel.png" width="150" height="150"
+         alt="Anton — pixel art">
+    <div class="nf-info">
+      <div class="u"><b>anton</b><span class="at">@</span><b>{{ site.domain }}</b></div>
+      <div class="rule">──────────────────────</div>
+      <div><span class="k">role</span><span class="v">{{ site.role }}</span></div>
+      <div><span class="k">now</span><span class="v">{{ site.now }}</span></div>
+      {% if site.location %}
+      <div><span class="k">loc</span><span class="v"><span class="pin">◉</span> {{ site.location.label }}
+        <span class="dim">{{ site.location.coords }}</span></span></div>
+      <div><span class="k">local</span><span class="v" id="clk"
+        data-tz="{{ site.location.tz }}">··:··:··</span> <span class="dim">· roaming</span></div>
+      {% endif %}
+      {% if site.stack %}
+      <div><span class="k">stack</span><span class="v">{{ site.stack | join(" · ") }}</span></div>
+      {% endif %}
+      <div><span class="k">essays</span><span class="v">{{ posts | length }}
+        <span class="dim">· rss ✓</span></span></div>
+      <div class="ansi-blocks" aria-hidden="true">
+        <i style="background:var(--c-red)"></i><i style="background:var(--c-pink)"></i>
+        <i style="background:var(--c-violet)"></i><i style="background:var(--c-blue)"></i>
+        <i style="background:var(--c-cyan)"></i><i style="background:var(--c-green)"></i>
+        <i style="background:var(--c-yellow)"></i><i style="background:var(--fg)"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-links">
+    <a href="/{{ site.collection }}" style="color:var(--c-violet)">→ essays</a>
+    {% if site.links.github %}<a href="{{ site.links.github }}" style="color:var(--c-blue)">github</a>{% endif %}
+    {% if site.links.email %}<a href="{{ site.links.email }}" style="color:var(--c-cyan)">email</a>{% endif %}
+    <a href="/feed.xml" style="color:var(--c-yellow)">rss</a>
+  </div>
+
+  <div class="divider" aria-hidden="true">╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ <b>◆</b> ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌</div>
 </section>
+
 {% if posts %}
 <section class="recent">
-  <h2>Latest</h2>
+  <h2>latest</h2>
   {% include "shared/_items.html" %}
 </section>
 {% endif %}
+
+<script>
+(function(){
+  var el=document.getElementById('clk'); if(!el) return;
+  var tz=el.dataset.tz;
+  function tick(){
+    try{
+      el.textContent=new Intl.DateTimeFormat('en-GB',
+        {timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date());
+    }catch(e){ el.textContent='--:--:--'; }
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
 {% endblock %}

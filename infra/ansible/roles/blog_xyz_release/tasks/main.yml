@@ -5,6 +5,9 @@
 - name: Sync source files to service root
   ansible.builtin.import_tasks: sync.yml
 
+- name: Inject build info into service environment
+  ansible.builtin.import_tasks: buildinfo.yml
+
 - name: Install deps and restart service
   ansible.builtin.import_tasks: activate.yml
 

@@ -1,0 +1,28 @@
+---
+- name: Resolve deployed git sha
+  ansible.builtin.command:
+    argv: [git, -C, "{{ blog_xyz_source_dir }}", rev-parse, --short, HEAD]
+  register: blog_xyz_git_sha
+  changed_when: false
+
+- name: Ensure systemd drop-in dir exists
+  ansible.builtin.file:
+    path: "/etc/systemd/system/{{ blog_xyz_service_name }}.service.d"
+    state: directory
+    mode: "0755"
+  become: true
+
+- name: Write build-info drop-in
+  ansible.builtin.copy:
+    dest: "/etc/systemd/system/{{ blog_xyz_service_name }}.service.d/buildinfo.conf"
+    mode: "0644"
+    content: |
+      [Service]
+      Environment=BLOG_GIT_SHA={{ blog_xyz_git_sha.stdout }}
+      Environment=BLOG_DEPLOYED_AT={{ ansible_date_time.date }}
+  become: true
+
+- name: Reload systemd so the drop-in is picked up
+  ansible.builtin.command:
+    argv: [sudo, systemctl, daemon-reload]
+  changed_when: true

@@ -15,10 +15,12 @@ SITES: dict[SiteId, SiteConfig] = {
         base_url="https://amaslakov.xyz",
         role="FDE / DevSecOps",
         now="shipping amaslakov.xyz",  # edit this "what now" line in sites.py
-        stack=("Python", "FastAPI", "HTMX"),
         location=Location(label="Tbilisi, GE", coords="41.7°N 44.8°E", tz="Asia/Tbilisi"),
         links=Links(
             github="https://github.com/amaslakovxyz",
+            linkedin="https://ge.linkedin.com/in/amaslakov",
+            instagram="https://instagram.com/amaslakovxyz",
+            telegram="https://t.me/amaslakovxyz",
             email="mailto:amaslakov@icloud.com",
         ),
     ),

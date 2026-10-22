@@ -6,6 +6,7 @@
   <title>{% block title %}{{ site.title }}{% endblock %}</title>
   <meta name="description" content="{{ site.tagline }}">
   <link rel="canonical" href="{{ site.base_url }}{{ request.url.path }}">
+  {# RSS feed stays live at /feed.xml but is not surfaced until essays exist. #}
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/static/favicon.svg">
   <meta property="og:type" content="website">
@@ -14,7 +15,6 @@
   <meta property="og:url" content="{{ site.base_url }}{{ request.url.path }}">
   <meta property="og:image" content="{{ site.base_url }}/static/img/anton-pixel.png">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
   <link rel="stylesheet" href="/static/base.css">
   <link rel="stylesheet" href="/static/{{ site.site_id }}.css">
   <script>(function(){var s=localStorage.getItem('theme');if(s)document.documentElement.dataset.theme=s;})();</script>
@@ -25,7 +25,6 @@
     <a class="brand" href="/">{{ site.title }}</a>
     <nav>
       <a href="/{{ site.collection }}">{{ site.collection }}</a>
-      <a href="/feed.xml">rss</a>
       <button type="button" class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">◐</button>
     </nav>
   </header>
@@ -38,7 +37,7 @@
       <span class="seg"><span class="hs">#</span> {{ build.git_sha }}</span>
     </div>
     {% endif %}
-    <span>© {{ site.author }} · <a href="/feed.xml">feed</a></span>
+    <span>© {{ site.author }}</span>
   </footer>
   <script>
     function toggleTheme(){var r=document.documentElement;var n=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=n;localStorage.setItem('theme',n);}

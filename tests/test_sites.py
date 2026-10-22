@@ -5,10 +5,10 @@ def test_xyz_has_identity_fields() -> None:
     site = SITES["xyz"]
     assert site.role  # non-empty "who I am" line
     assert site.now  # non-empty "what now" line
-    assert site.stack  # non-empty tuple
     assert site.location is not None
     assert site.location.tz == "Asia/Tbilisi"
     assert site.links.github and site.links.email
+    assert site.links.linkedin and site.links.instagram and site.links.telegram
 
 
 def test_resolves_known_hosts() -> None:

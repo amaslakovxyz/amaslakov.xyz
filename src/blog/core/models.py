@@ -21,6 +21,9 @@ class Location:
 class Links:
     github: str | None = None
     email: str | None = None
+    linkedin: str | None = None
+    instagram: str | None = None
+    telegram: str | None = None
 
 
 @dataclass(frozen=True, slots=True)

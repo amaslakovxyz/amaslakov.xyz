@@ -35,13 +35,9 @@
   image-rendering: pixelated; object-fit: cover; object-position: 50% 30%;
   box-shadow: 0 0 0 1px var(--c-violet); }
 .nf-info { font-size: .88rem; }
-.nf-info .u b { color: var(--fg); } .nf-info .u .at { color: var(--c-pink); }
-.nf-info .rule { color: var(--border); }
 .nf-info .k { color: var(--accent); display: inline-block; min-width: 4.7rem; }
 .nf-info .v { color: var(--fg); }
 .nf-info .dim { color: var(--muted); } .nf-info .pin { color: var(--c-pink); }
-.ansi-blocks { display: flex; gap: 0; margin-top: .5rem; }
-.ansi-blocks i { width: 1.25rem; height: .85rem; display: inline-block; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 1.1rem; font-family: var(--mono);
   font-size: .85rem; margin-bottom: 1.4rem; }
 .hero-links a { text-decoration: none; }

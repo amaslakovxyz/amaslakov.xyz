@@ -74,8 +74,9 @@ def test_home_renders_hero() -> None:
     assert "whoami" in r.text
     assert "Anton Maslakov" in r.text
     assert "Asia/Tbilisi" in r.text  # tz handed to the live clock
-    assert "Python" in r.text  # stack row
     assert "anton-pixel.png" in r.text  # pixel-art avatar
+    assert "t.me/amaslakovxyz" in r.text  # telegram social link
+    assert ">rss<" not in r.text  # rss not surfaced yet
 
 
 def test_feed_served() -> None:

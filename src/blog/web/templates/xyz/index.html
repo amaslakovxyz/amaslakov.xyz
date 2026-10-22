@@ -8,8 +8,6 @@
     <img class="avatar" src="/static/img/anton-pixel.png" width="150" height="150"
          alt="Anton — pixel art">
     <div class="nf-info">
-      <div class="u"><b>anton</b><span class="at">@</span><b>{{ site.domain }}</b></div>
-      <div class="rule">──────────────────────</div>
       <div><span class="k">role</span><span class="v">{{ site.role }}</span></div>
       <div><span class="k">now</span><span class="v">{{ site.now }}</span></div>
       {% if site.location %}
@@ -18,36 +16,17 @@
       <div><span class="k">local</span><span class="v" id="clk"
         data-tz="{{ site.location.tz }}">··:··:··</span> <span class="dim">· roaming</span></div>
       {% endif %}
-      {% if site.stack %}
-      <div><span class="k">stack</span><span class="v">{{ site.stack | join(" · ") }}</span></div>
-      {% endif %}
-      <div><span class="k">essays</span><span class="v">{{ posts | length }}
-        <span class="dim">· rss ✓</span></span></div>
-      <div class="ansi-blocks" aria-hidden="true">
-        <i style="background:var(--c-red)"></i><i style="background:var(--c-pink)"></i>
-        <i style="background:var(--c-violet)"></i><i style="background:var(--c-blue)"></i>
-        <i style="background:var(--c-cyan)"></i><i style="background:var(--c-green)"></i>
-        <i style="background:var(--c-yellow)"></i><i style="background:var(--fg)"></i>
-      </div>
     </div>
   </div>
 
   <div class="hero-links">
-    <a href="/{{ site.collection }}" style="color:var(--c-violet)">→ essays</a>
-    {% if site.links.github %}<a href="{{ site.links.github }}" style="color:var(--c-blue)">github</a>{% endif %}
-    {% if site.links.email %}<a href="{{ site.links.email }}" style="color:var(--c-cyan)">email</a>{% endif %}
-    <a href="/feed.xml" style="color:var(--c-yellow)">rss</a>
+    {% if site.links.github %}<a href="{{ site.links.github }}" style="color:var(--c-violet)">github</a>{% endif %}
+    {% if site.links.linkedin %}<a href="{{ site.links.linkedin }}" style="color:var(--c-blue)">linkedin</a>{% endif %}
+    {% if site.links.instagram %}<a href="{{ site.links.instagram }}" style="color:var(--c-pink)">instagram</a>{% endif %}
+    {% if site.links.telegram %}<a href="{{ site.links.telegram }}" style="color:var(--c-cyan)">telegram</a>{% endif %}
+    {% if site.links.email %}<a href="{{ site.links.email }}" style="color:var(--c-yellow)">email</a>{% endif %}
   </div>
-
-  <div class="divider" aria-hidden="true">╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ <b>◆</b> ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌</div>
 </section>
-
-{% if posts %}
-<section class="recent">
-  <h2>latest</h2>
-  {% include "shared/_items.html" %}
-</section>
-{% endif %}
 
 <script>
 (function(){

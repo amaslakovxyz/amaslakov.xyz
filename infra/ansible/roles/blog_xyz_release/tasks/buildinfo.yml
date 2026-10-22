@@ -5,6 +5,13 @@
   register: blog_xyz_git_sha
   changed_when: false
 
+- name: Resolve deploy date
+  # The playbook runs with gather_facts:false, so ansible_date_time is unset;
+  # resolve the date explicitly on the runner instead.
+  ansible.builtin.command: date -u +%Y-%m-%d
+  register: blog_xyz_deploy_date
+  changed_when: false
+
 - name: Ensure systemd drop-in dir exists
   ansible.builtin.file:
     path: "/etc/systemd/system/{{ blog_xyz_service_name }}.service.d"
@@ -19,7 +26,7 @@
     content: |
       [Service]
       Environment=BLOG_GIT_SHA={{ blog_xyz_git_sha.stdout }}
-      Environment=BLOG_DEPLOYED_AT={{ ansible_date_time.date }}
+      Environment=BLOG_DEPLOYED_AT={{ blog_xyz_deploy_date.stdout }}
   become: true
 
 - name: Reload systemd so the drop-in is picked up

@@ -1,10 +1,18 @@
-/* amaslakov.xyz — warm, playful, dark-first. */
+/* amaslakov.xyz — cool violet/blue, multicolor accents, dark-first. */
 :root {
-  --bg: #14100e; --fg: #f2e9e1; --muted: #b8a99b; --accent: #e8a06a;
-  --border: #2a2320; --code-bg: #1d1815;
+  --bg: #0f0e17; --fg: #e8e6f5; --muted: #9a95b8; --accent: #8b7cf6;
+  --border: #262238; --code-bg: #141222;
+  --c-violet: #8b7cf6; --c-blue: #5b8cff; --c-cyan: #3fd0d6;
+  --c-green: #6ee7a8; --c-yellow: #f5c66b; --c-pink: #f472b6; --c-red: #fb7185;
 }
 :root[data-theme="light"] {
-  --bg: #fbf7f2; --fg: #2a211b; --muted: #7a6a5c; --accent: #c2673a;
-  --border: #eaded1; --code-bg: #f3ebe1;
+  --bg: #f7f6fb; --fg: #211f33; --muted: #6b6684; --accent: #6d5bd6;
+  --border: #e4e1f0; --code-bg: #efedf7;
+  --c-violet: #6d5bd6; --c-blue: #3a6de0; --c-cyan: #1a9ba3;
+  --c-green: #2f9e66; --c-yellow: #b5852a; --c-pink: #c23a86; --c-red: #d0455a;
 }
-.brand { font-weight: 700; letter-spacing: .02em; }
+.brand {
+  font-weight: 700; letter-spacing: .02em;
+  background: linear-gradient(90deg, var(--c-violet), var(--c-blue));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}

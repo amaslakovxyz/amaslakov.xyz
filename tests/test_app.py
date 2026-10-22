@@ -84,7 +84,7 @@ def test_home_has_travel_map() -> None:
     assert "travelmap" in r.text
     assert "Lisbon, PT" in r.text  # a travel-log point
     assert "mp-coords" in r.text  # hover detail panel
-    assert "book-btn" not in r.text  # booking hidden until booking_url is set
+    assert "book-btn" in r.text  # booking button rendered (booking_url set)
 
 
 def test_feed_served() -> None:

@@ -31,8 +31,8 @@ SITES: dict[SiteId, SiteConfig] = {
             TravelPoint("Yerevan, AM", "40.2°N 44.5°E", "2023", lat=40.2, lon=44.5),
             TravelPoint("Tbilisi, GE", "41.7°N 44.8°E", "2024 · now", lat=41.7, lon=44.8),
         ),
-        # Set after creating a Cal.com event, e.g. "https://cal.com/amaslakov/30min".
-        booking_url=None,
+        # Placeholder Cal.com link — claim this handle or swap for your event URL.
+        booking_url="https://cal.com/amaslakovxyz",
     ),
 }
 

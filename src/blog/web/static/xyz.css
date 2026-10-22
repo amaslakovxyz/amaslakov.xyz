@@ -62,27 +62,6 @@
 .statusbar .br { color: var(--c-green); } .statusbar .dp { color: var(--c-cyan); }
 .statusbar .hs { color: var(--c-violet); }
 
-/* travel map */
-.travelmap { margin: 1.3rem 0 1.4rem; }
-.map-cap { font-family: var(--mono); font-size: .76rem; color: var(--muted); margin-bottom: .4rem; }
-.map-cap .dim { opacity: .7; }
-.map-wrap { position: relative; border: 1px solid var(--border); border-radius: 12px;
-  background: var(--code-bg); overflow: hidden; }
-.map-svg { display: block; width: 100%; height: auto; }
-.tp { cursor: pointer; }
-.tp:focus { outline: none; }
-.tp-dot { transition: r .15s ease; }
-.tp.on .tp-dot, .tp:hover .tp-dot { r: 7.5; }
-.tp-now .tp-dot { animation: tppulse 1.9s ease-in-out infinite; }
-@keyframes tppulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
-.map-panel { position: absolute; top: .55rem; right: .6rem; font-family: var(--mono);
-  text-align: right; background: rgba(15,14,23,.72); border: 1px solid var(--border);
-  border-radius: 8px; padding: .4rem .6rem; pointer-events: none; }
-:root[data-theme="light"] .map-panel { background: rgba(247,246,251,.8); }
-.mp-label { color: var(--fg); font-size: .82rem; font-weight: 600; }
-.mp-coords { color: var(--c-cyan); font-size: .72rem; }
-.mp-when { color: var(--muted); font-size: .72rem; }
-
 /* book-a-slot */
 .book-line { margin: 1.3rem 0 0; }
 .book-btn { display: inline-flex; align-items: center; gap: .5rem; font-family: var(--mono);
@@ -91,4 +70,8 @@
   background: linear-gradient(100deg, var(--c-violet), var(--c-blue)); }
 .book-btn:hover { text-decoration: none; filter: brightness(1.08); }
 
-@media (prefers-reduced-motion: reduce) { .tp-now .tp-dot { animation: none; } }
+/* about */
+.about { margin-top: 2rem; }
+.about .divider { color: var(--border); font-family: var(--mono); font-size: .9rem;
+  letter-spacing: .08em; overflow: hidden; white-space: nowrap; margin: 0 0 1.2rem; }
+.about .divider b { color: var(--accent); }

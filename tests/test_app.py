@@ -79,12 +79,11 @@ def test_home_renders_hero() -> None:
     assert ">rss<" not in r.text  # rss not surfaced yet
 
 
-def test_home_has_travel_map() -> None:
+def test_home_has_booking_button() -> None:
     r = client.get("/", headers=XYZ)
-    assert "travelmap" in r.text
-    assert "Lisbon, PT" in r.text  # a travel-log point
-    assert "mp-coords" in r.text  # hover detail panel
     assert "book-btn" in r.text  # booking button rendered (booking_url set)
+    assert "cal.com/anton-maslakov" in r.text
+    assert "travelmap" not in r.text  # map removed
 
 
 def test_feed_served() -> None:

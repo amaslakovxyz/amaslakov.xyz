@@ -13,13 +13,13 @@ SITES: dict[SiteId, SiteConfig] = {
         author="Anton Maslakov",
         collection="essays",
         base_url="https://amaslakov.xyz",
-        role="builds systems, writes essays",  # placeholder — edit in sites.py
-        now="shipping amaslakov.xyz",  # placeholder — edit in sites.py
+        role="FDE / DevSecOps",
+        now="shipping amaslakov.xyz",  # edit this "what now" line in sites.py
         stack=("Python", "FastAPI", "HTMX"),
         location=Location(label="Tbilisi, GE", coords="41.7°N 44.8°E", tz="Asia/Tbilisi"),
         links=Links(
-            github="https://github.com/amaslak0v",
-            email="mailto:antoxam1997@gmail.com",
+            github="https://github.com/amaslakovxyz",
+            email="mailto:amaslakov@icloud.com",
         ),
     ),
 }

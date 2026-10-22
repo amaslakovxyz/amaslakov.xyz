@@ -12,6 +12,7 @@ from starlette.templating import Jinja2Templates
 from blog.core.feed import render_feed
 from blog.core.models import Post, SiteConfig
 from blog.core.sites import SITES, resolve_site
+from blog.shell.buildinfo import build_status
 from blog.shell.config import Settings, get_settings
 from blog.shell.loader import load_posts
 
@@ -38,6 +39,7 @@ def _filter_tag(posts: tuple[Post, ...], tag: str | None) -> tuple[Post, ...]:
 def create_app() -> FastAPI:
     app = FastAPI(title="amaslakov.xyz", docs_url=None, redoc_url=None)
     app.state.settings = get_settings()
+    _templates.env.globals["build"] = build_status(app.state.settings)
     app.mount("/static", StaticFiles(directory=str(_WEB / "static")), name="static")
 
     @app.get("/", response_class=HTMLResponse)

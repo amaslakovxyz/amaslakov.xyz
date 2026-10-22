@@ -76,6 +76,8 @@ def test_home_renders_hero() -> None:
     assert "Asia/Tbilisi" in r.text  # tz handed to the live clock
     assert "anton-pixel.png" in r.text  # pixel-art avatar
     assert "t.me/amaslakovxyz" in r.text  # telegram social link
+    assert "x.com/amaslak0v" in r.text  # X social link
+    assert "strava.com/athletes" in r.text  # strava social link
     assert ">rss<" not in r.text  # rss not surfaced yet
 
 

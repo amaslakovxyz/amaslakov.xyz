@@ -24,6 +24,8 @@ class Links:
     linkedin: str | None = None
     instagram: str | None = None
     telegram: str | None = None
+    x: str | None = None
+    strava: str | None = None
 
 
 @dataclass(frozen=True, slots=True)

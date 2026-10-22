@@ -21,6 +21,8 @@ SITES: dict[SiteId, SiteConfig] = {
             linkedin="https://ge.linkedin.com/in/amaslakov",
             instagram="https://instagram.com/amaslakovxyz",
             telegram="https://t.me/amaslakovxyz",
+            x="https://x.com/amaslak0v",
+            strava="https://www.strava.com/athletes/40666756",
             email="mailto:amaslakov@icloud.com",
         ),
         booking_url="https://cal.com/anton-maslakov-14shkq/30min",

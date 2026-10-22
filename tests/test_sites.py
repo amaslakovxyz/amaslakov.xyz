@@ -9,6 +9,7 @@ def test_xyz_has_identity_fields() -> None:
     assert site.location.tz == "Asia/Tbilisi"
     assert site.links.github and site.links.email
     assert site.links.linkedin and site.links.instagram and site.links.telegram
+    assert site.links.x and site.links.strava
 
 
 def test_resolves_known_hosts() -> None:

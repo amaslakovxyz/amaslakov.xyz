@@ -11,6 +11,19 @@ Collection = Literal["essays"]
 
 
 @dataclass(frozen=True, slots=True)
+class Location:
+    label: str  # e.g. "Tbilisi, GE"
+    coords: str  # e.g. "41.7°N 44.8°E"
+    tz: str  # IANA timezone, e.g. "Asia/Tbilisi"
+
+
+@dataclass(frozen=True, slots=True)
+class Links:
+    github: str | None = None
+    email: str | None = None
+
+
+@dataclass(frozen=True, slots=True)
 class SiteConfig:
     site_id: SiteId
     domain: str
@@ -19,6 +32,11 @@ class SiteConfig:
     author: str
     collection: Collection
     base_url: str
+    role: str = ""
+    now: str = ""
+    stack: tuple[str, ...] = ()
+    location: Location | None = None
+    links: Links = Links()
 
 
 @dataclass(frozen=True, slots=True)

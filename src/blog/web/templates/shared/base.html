@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{{ site.title }}{% endblock %}</title>
   <meta name="description" content="{{ site.tagline }}">
+  <link rel="canonical" href="{{ site.base_url }}{{ request.url.path }}">
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/static/favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% block og_title %}{{ site.title }}{% endblock %}">
+  <meta property="og:description" content="{{ site.tagline }}">
+  <meta property="og:url" content="{{ site.base_url }}{{ request.url.path }}">
+  <meta property="og:image" content="{{ site.base_url }}/static/img/anton-pixel.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
   <link rel="stylesheet" href="/static/base.css">
   <link rel="stylesheet" href="/static/{{ site.site_id }}.css">
@@ -21,7 +30,16 @@
     </nav>
   </header>
   <main>{% block content %}{% endblock %}</main>
-  <footer class="site-footer">© {{ site.author }} · <a href="/feed.xml">feed</a></footer>
+  <footer class="site-footer">
+    {% if build %}
+    <div class="statusbar">
+      <span class="seg"><span class="br">⎇</span> main</span>
+      <span class="seg"><span class="dp">●</span> deployed {{ build.deployed }}</span>
+      <span class="seg"><span class="hs">#</span> {{ build.git_sha }}</span>
+    </div>
+    {% endif %}
+    <span>© {{ site.author }} · <a href="/feed.xml">feed</a></span>
+  </footer>
   <script>
     function toggleTheme(){var r=document.documentElement;var n=r.dataset.theme==='dark'?'light':'dark';r.dataset.theme=n;localStorage.setItem('theme',n);}
   </script>

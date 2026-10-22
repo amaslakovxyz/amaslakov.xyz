@@ -58,3 +58,10 @@
 @media (prefers-reduced-motion: reduce) {
   .anim > * { animation: none; } .hero .cursor { animation: none; }
 }
+
+/* footer status bar */
+.site-footer { flex-wrap: wrap; gap: .6rem 1rem; }
+.statusbar { display: flex; gap: 1.1rem; flex-wrap: wrap; font-family: var(--mono); font-size: .72rem; }
+.statusbar .seg { color: var(--muted); }
+.statusbar .br { color: var(--c-green); } .statusbar .dp { color: var(--c-cyan); }
+.statusbar .hs { color: var(--c-violet); }

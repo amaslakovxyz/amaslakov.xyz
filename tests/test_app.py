@@ -37,6 +37,18 @@ def test_missing_post_is_404() -> None:
     assert client.get("/essays/nope", headers=XYZ).status_code == 404
 
 
+def test_head_has_og_and_canonical() -> None:
+    r = client.get("/", headers=XYZ)
+    assert 'property="og:title"' in r.text
+    assert 'name="twitter:card"' in r.text
+    assert '<link rel="canonical"' in r.text
+    assert 'rel="icon"' in r.text
+
+
+def test_favicon_served() -> None:
+    assert client.get("/static/favicon.svg").status_code == 200
+
+
 def test_home_renders_hero() -> None:
     r = client.get("/", headers=XYZ)
     assert r.status_code == 200

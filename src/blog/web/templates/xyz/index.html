@@ -1,15 +1,57 @@
 {% extends "shared/base.html" %}
 {% block content %}
-<section class="hero">
-  <h1>{{ site.title }}</h1>
-  <p>{{ site.tagline }}</p>
-  <p class="placeholder">[ landing placeholder — design later ]</p>
-  <p><a href="/{{ site.collection }}">Essays</a></p>
+<section class="hero anim">
+  <p class="prompt"><span class="c">~</span> whoami<span class="cursor">&nbsp;</span></p>
+  <h1 class="name">{{ site.author }}</h1>
+
+  <div class="nf">
+    <img class="avatar" src="/static/img/anton-pixel.png" width="150" height="150"
+         alt="Anton — pixel art">
+    <div class="nf-info">
+      <div><span class="k">role</span><span class="v">{{ site.role }}</span></div>
+      <div><span class="k">now</span><span class="v">{{ site.now }}</span></div>
+      {% if site.location %}
+      <div><span class="k">loc</span><span class="v"><span class="pin">◉</span> {{ site.location.label }}
+        <span class="dim">{{ site.location.coords }}</span></span></div>
+      <div><span class="k">local</span><span class="v" id="clk"
+        data-tz="{{ site.location.tz }}">··:··:··</span> <span class="dim">· roaming</span></div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="hero-links">
+    {% if site.links.github %}<a href="{{ site.links.github }}" style="color:var(--c-violet)">github</a>{% endif %}
+    {% if site.links.linkedin %}<a href="{{ site.links.linkedin }}" style="color:var(--c-blue)">linkedin</a>{% endif %}
+    {% if site.links.instagram %}<a href="{{ site.links.instagram }}" style="color:var(--c-pink)">instagram</a>{% endif %}
+    {% if site.links.telegram %}<a href="{{ site.links.telegram }}" style="color:var(--c-cyan)">telegram</a>{% endif %}
+    {% if site.links.email %}<a href="{{ site.links.email }}" style="color:var(--c-yellow)">email</a>{% endif %}
+  </div>
+
+  {% if site.booking_url %}
+  <p class="book-line">
+    <a class="book-btn" href="{{ site.booking_url }}" target="_blank" rel="noopener">◷ book a slot →</a>
+  </p>
+  {% endif %}
 </section>
-{% if posts %}
-<section class="recent">
-  <h2>Latest</h2>
-  {% include "shared/_items.html" %}
+
+{% if site.about %}
+<section class="about">
+  <div class="divider" aria-hidden="true">╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ <b>◆</b> ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌</div>
+  <div class="prose">{{ site.about }}</div>
 </section>
 {% endif %}
+
+<script>
+(function(){
+  var el=document.getElementById('clk'); if(!el) return;
+  var tz=el.dataset.tz;
+  function tick(){
+    try{
+      el.textContent=new Intl.DateTimeFormat('en-GB',
+        {timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(new Date());
+    }catch(e){ el.textContent='--:--:--'; }
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
 {% endblock %}

@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     content_root: Path = _APP_ROOT / "content"
     # Force a site locally regardless of Host header (dev convenience).
     dev_site: SiteId | None = None
+    # Build info, injected at deploy time (systemd Environment). Absent locally.
+    git_sha: str | None = None
+    deployed_at: str | None = None  # ISO date, e.g. "2026-10-20"
 
 
 def get_settings() -> Settings:

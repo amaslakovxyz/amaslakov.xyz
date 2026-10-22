@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from blog.core.models import SiteConfig, SiteId
+from blog.core.models import Links, Location, SiteConfig, SiteId
 
 SITES: dict[SiteId, SiteConfig] = {
     "xyz": SiteConfig(
@@ -13,6 +13,19 @@ SITES: dict[SiteId, SiteConfig] = {
         author="Anton Maslakov",
         collection="essays",
         base_url="https://amaslakov.xyz",
+        role="FDE / DevSecOps",
+        now="shipping amaslakov.xyz",  # edit this "what now" line in sites.py
+        location=Location(label="Tbilisi, GE", coords="41.7°N 44.8°E", tz="Asia/Tbilisi"),
+        links=Links(
+            github="https://github.com/amaslakovxyz",
+            linkedin="https://ge.linkedin.com/in/amaslakov",
+            instagram="https://instagram.com/amaslakovxyz",
+            telegram="https://t.me/amaslakovxyz",
+            email="mailto:amaslakov@icloud.com",
+        ),
+        booking_url="https://cal.com/anton-maslakov-14shkq/30min",
+        # Write your "about me" paragraph here; it renders below the hero.
+        about="",
     ),
 }
 

@@ -5,13 +5,14 @@ from __future__ import annotations
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse, Response
+from fastapi.responses import HTMLResponse, PlainTextResponse, Response
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.templating import Jinja2Templates
 
 from blog.core.feed import render_feed
 from blog.core.models import Post, SiteConfig
+from blog.core.sitemap import render_sitemap
 from blog.core.sites import SITES, resolve_site
 from blog.shell.buildinfo import build_status
 from blog.shell.config import Settings, get_settings
@@ -57,6 +58,18 @@ def create_app() -> FastAPI:
         site = _site_for(request)
         xml = render_feed(site, _load(request, site))
         return Response(content=xml, media_type="application/rss+xml")
+
+    @app.get("/robots.txt", response_class=PlainTextResponse)
+    def robots(request: Request) -> Response:
+        site = _site_for(request)
+        body = f"User-agent: *\nAllow: /\nSitemap: {site.base_url}/sitemap.xml\n"
+        return PlainTextResponse(body)
+
+    @app.get("/sitemap.xml")
+    def sitemap(request: Request) -> Response:
+        site = _site_for(request)
+        xml = render_sitemap(site, _load(request, site))
+        return Response(content=xml, media_type="application/xml")
 
     @app.get("/{collection}", response_class=HTMLResponse)
     def listing(request: Request, collection: str, tag: str | None = None) -> Response:

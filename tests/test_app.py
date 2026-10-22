@@ -37,6 +37,17 @@ def test_missing_post_is_404() -> None:
     assert client.get("/essays/nope", headers=XYZ).status_code == 404
 
 
+def test_robots_and_sitemap() -> None:
+    robots = client.get("/robots.txt", headers=XYZ)
+    assert robots.status_code == 200
+    assert "text/plain" in robots.headers["content-type"]
+    assert "Sitemap: https://amaslakov.xyz/sitemap.xml" in robots.text
+    sm = client.get("/sitemap.xml", headers=XYZ)
+    assert sm.status_code == 200
+    assert "application/xml" in sm.headers["content-type"]
+    assert "/essays/on-beginnings" in sm.text
+
+
 def test_404_is_styled_html() -> None:
     r = client.get("/essays/nope", headers=XYZ)
     assert r.status_code == 404

@@ -1,0 +1,10 @@
+{% extends "shared/base.html" %}
+{% block title %}404 · {{ site.title }}{% endblock %}
+{% block content %}
+<section class="hero">
+  <p class="prompt"><span class="c">~</span> cat /dev/null</p>
+  <h1 class="name">404</h1>
+  <p>Эта страница не найдена. <a href="/">На главную</a> ·
+     <a href="/{{ site.collection }}">{{ site.collection }}</a></p>
+</section>
+{% endblock %}

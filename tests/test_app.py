@@ -37,6 +37,14 @@ def test_missing_post_is_404() -> None:
     assert client.get("/essays/nope", headers=XYZ).status_code == 404
 
 
+def test_404_is_styled_html() -> None:
+    r = client.get("/essays/nope", headers=XYZ)
+    assert r.status_code == 404
+    assert "text/html" in r.headers["content-type"]
+    assert "404" in r.text
+    assert "amaslakov.xyz" in r.text  # site chrome present
+
+
 def test_head_has_og_and_canonical() -> None:
     r = client.get("/", headers=XYZ)
     assert 'property="og:title"' in r.text

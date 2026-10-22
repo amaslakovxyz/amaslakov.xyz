@@ -7,6 +7,7 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse, Response
 from fastapi.staticfiles import StaticFiles
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.templating import Jinja2Templates
 
 from blog.core.feed import render_feed
@@ -84,6 +85,15 @@ def create_app() -> FastAPI:
                     request, "shared/post.html", {"site": site, "post": post}
                 )
         raise HTTPException(status_code=404)
+
+    @app.exception_handler(StarletteHTTPException)
+    def on_http_error(request: Request, exc: StarletteHTTPException) -> Response:
+        if exc.status_code == 404:
+            site = _site_for(request)
+            return _templates.TemplateResponse(
+                request, "shared/404.html", {"site": site}, status_code=404
+            )
+        raise exc
 
     return app
 

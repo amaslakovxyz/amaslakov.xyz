@@ -15,6 +15,13 @@ def test_xyz_has_identity_fields() -> None:
 def test_resolves_known_hosts() -> None:
     assert resolve_site("amaslakov.xyz") == "xyz"
     assert resolve_site("www.amaslakov.xyz") == "xyz"
+    assert resolve_site("amaslakov.com") == "com"
+    assert resolve_site("www.amaslakov.com") == "com"
+
+
+def test_com_site_registered() -> None:
+    assert SITES["com"].domain == "amaslakov.com"
+    assert SITES["com"].collection == "blog"
 
 
 def test_strips_port_and_case() -> None:

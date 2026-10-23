@@ -1,0 +1,100 @@
+{% extends "shared/base.html" %}
+{% block title %}{{ cv.name }} — CV{% endblock %}
+{% block content %}
+{% if cv %}
+<article class="cv">
+  <header class="cv-head">
+    <h1 class="cv-name">{{ cv.name }}</h1>
+    <p class="cv-headline">{{ cv.headline }}</p>
+    <p class="cv-meta">
+      {% if cv.location %}<span class="cv-loc">◉ {{ cv.location }}</span>{% endif %}
+      {% if cv.email %}<a href="mailto:{{ cv.email }}">{{ cv.email }}</a>{% endif %}
+      {% for label, url in cv.links %}<a href="{{ url }}" target="_blank" rel="noopener">{{ label }}</a>{% endfor %}
+    </p>
+    {% if site.booking_url %}
+    <p><a class="book-btn" href="{{ site.booking_url }}" target="_blank" rel="noopener">◷ book a slot →</a></p>
+    {% endif %}
+  </header>
+
+  {% if cv.summary %}
+  <section class="cv-sec">
+    <h2 class="cv-h">summary</h2>
+    {% for p in cv.summary %}<p>{{ p }}</p>{% endfor %}
+  </section>
+  {% endif %}
+
+  {% if cv.open_to %}
+  <section class="cv-sec">
+    <h2 class="cv-h">open to</h2>
+    <ul class="cv-opento">{% for o in cv.open_to %}<li>{{ o }}</li>{% endfor %}</ul>
+    {% if cv.open_to_note %}<p class="cv-opento-note">{{ cv.open_to_note }}</p>{% endif %}
+  </section>
+  {% endif %}
+
+  {% if cv.key_contributions %}
+  <section class="cv-sec">
+    <h2 class="cv-h">highlights</h2>
+    <ul class="cv-list">{% for h in cv.key_contributions %}<li>{{ h }}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  {% if cv.experience %}
+  <section class="cv-sec">
+    <h2 class="cv-h">experience <span class="cv-hint">· click to expand</span></h2>
+    {% for e in cv.experience %}
+    <details class="cv-exp"{% if loop.first %} open{% endif %}>
+      <summary class="cv-exp-row">
+        {% if e.url %}<a class="cv-logo-link" href="{{ e.url }}" target="_blank" rel="noopener"
+          onclick="event.stopPropagation()" aria-label="{{ e.org }}">{% endif %}
+        <span class="cv-logo-box"><span class="cv-logo-mono">{{ e.org[0] }}</span>
+          {% if e.logo %}<img class="cv-logo" src="{{ e.logo }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}
+        </span>
+        {% if e.url %}</a>{% endif %}
+        <span class="cv-exp-head">
+          <span class="cv-org">{{ e.org }}</span>
+          <span class="cv-role">{{ e.role }}</span>
+        </span>
+        <span class="cv-period">{{ e.period }}</span>
+      </summary>
+      <div class="cv-exp-body">
+        {% if e.summary %}<p class="cv-exp-sum">{{ e.summary }}</p>{% endif %}
+        {% if e.highlights %}<ul class="cv-list">{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
+        {% if e.stack %}<p class="cv-stack"><span class="cv-stack-k">stack:</span> {{ e.stack }}</p>{% endif %}
+      </div>
+    </details>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if cv.skills %}
+  <section class="cv-sec">
+    <h2 class="cv-h">skills</h2>
+    <dl class="cv-skills">
+      {% for g in cv.skills %}
+      <div class="cv-skill-row">
+        <dt>{{ g.label }}</dt>
+        <dd>{% for it in g.items %}<span class="chip">{{ it }}</span>{% endfor %}</dd>
+      </div>
+      {% endfor %}
+    </dl>
+  </section>
+  {% endif %}
+
+  {% if cv.certifications %}
+  <section class="cv-sec">
+    <h2 class="cv-h">certifications</h2>
+    <ul class="cv-list">{% for c in cv.certifications %}<li>{{ c }}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+
+  {% if cv.education %}
+  <section class="cv-sec">
+    <h2 class="cv-h">education</h2>
+    <ul class="cv-list">{% for e in cv.education %}<li>{{ e }}</li>{% endfor %}</ul>
+  </section>
+  {% endif %}
+</article>
+{% else %}
+<section class="hero"><h1>{{ site.title }}</h1><p>{{ site.tagline }}</p></section>
+{% endif %}
+{% endblock %}

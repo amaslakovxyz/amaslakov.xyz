@@ -4,6 +4,7 @@ from blog.shell.app import create_app
 
 client = TestClient(create_app())
 XYZ = {"host": "amaslakov.xyz"}
+COM = {"host": "amaslakov.com"}
 
 
 def test_host_routing_picks_xyz() -> None:
@@ -12,10 +13,20 @@ def test_host_routing_picks_xyz() -> None:
     assert "amaslakov.xyz" in r.text
 
 
-def test_com_host_does_not_select_com_site() -> None:
-    r = client.get("/essays/on-beginnings", headers={"host": "amaslakov.com"})
+def test_com_host_renders_cv() -> None:
+    r = client.get("/", headers=COM)
     assert r.status_code == 200
-    assert "Every system starts empty" in r.text
+    assert "Anton Maslakov" in r.text
+    assert "Lido.fi" in r.text  # experience from cv.yaml
+    assert "experience" in r.text  # cv section header
+
+
+def test_cv_route_on_com() -> None:
+    assert client.get("/cv", headers=COM).status_code == 200
+
+
+def test_cv_route_404_on_xyz() -> None:
+    assert client.get("/cv", headers=XYZ).status_code == 404
 
 
 def test_unknown_host_defaults_to_xyz() -> None:

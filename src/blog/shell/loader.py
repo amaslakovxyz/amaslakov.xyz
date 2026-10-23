@@ -8,8 +8,8 @@ import yaml
 
 from blog.core.frontmatter import split_frontmatter
 from blog.core.markdown import render_markdown
-from blog.core.models import Post, SiteConfig
-from blog.shell.schema import PostFrontmatter
+from blog.core.models import CV, Post, SiteConfig
+from blog.shell.schema import CVDocument, PostFrontmatter
 
 
 def load_posts(
@@ -30,3 +30,12 @@ def load_posts(
         posts.append(Post(meta=meta, html=render_markdown(body)))
     posts.sort(key=lambda post: post.meta.date, reverse=True)
     return tuple(posts)
+
+
+def load_cv(content_root: Path, site: SiteConfig) -> CV | None:
+    """Load and validate ``content/<site>/cv.yaml``; None if absent."""
+    path = content_root / site.site_id / "cv.yaml"
+    if not path.is_file():
+        return None
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return CVDocument.model_validate(data).to_cv()

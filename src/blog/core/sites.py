@@ -5,6 +5,16 @@ from __future__ import annotations
 from blog.core.models import Links, Location, SiteConfig, SiteId
 
 SITES: dict[SiteId, SiteConfig] = {
+    "com": SiteConfig(
+        site_id="com",
+        domain="amaslakov.com",
+        title="Anton Maslakov",
+        tagline="Solutions Engineer · DevSecOps · SRE",
+        author="Anton Maslakov",
+        collection="blog",
+        base_url="https://amaslakov.com",
+        booking_url="https://cal.com/anton-maslakov-14shkq/30min",
+    ),
     "xyz": SiteConfig(
         site_id="xyz",
         domain="amaslakov.xyz",
@@ -32,12 +42,14 @@ SITES: dict[SiteId, SiteConfig] = {
 }
 
 _HOST_MAP: dict[str, SiteId] = {
+    "amaslakov.com": "com",
+    "www.amaslakov.com": "com",
     "amaslakov.xyz": "xyz",
     "www.amaslakov.xyz": "xyz",
 }
 
 
 def resolve_site(host: str, default: SiteId = "xyz") -> SiteId:
-    """Map a request ``Host`` header to the only supported site."""
+    """Map a request ``Host`` header to a site; unknown hosts fall back."""
     hostname = host.split(":", 1)[0].strip().lower()
     return _HOST_MAP.get(hostname, default)

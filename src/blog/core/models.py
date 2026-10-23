@@ -6,8 +6,8 @@ from dataclasses import dataclass
 from datetime import date
 from typing import Literal
 
-SiteId = Literal["xyz"]
-Collection = Literal["essays"]
+SiteId = Literal["xyz", "com"]
+Collection = Literal["essays", "blog"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -60,3 +60,38 @@ class PostMeta:
 class Post:
     meta: PostMeta
     html: str
+
+
+@dataclass(frozen=True, slots=True)
+class CVExperience:
+    org: str
+    role: str
+    period: str
+    url: str = ""
+    logo: str = ""  # logo image URL (derived from url)
+    summary: str = ""
+    highlights: tuple[str, ...] = ()
+    stack: str = ""
+
+
+@dataclass(frozen=True, slots=True)
+class CVSkillGroup:
+    label: str
+    items: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class CV:
+    name: str
+    headline: str
+    location: str = ""
+    email: str = ""
+    links: tuple[tuple[str, str], ...] = ()  # (label, url)
+    summary: tuple[str, ...] = ()  # paragraphs
+    open_to: tuple[str, ...] = ()  # role types sought
+    open_to_note: str = ""
+    key_contributions: tuple[str, ...] = ()
+    skills: tuple[CVSkillGroup, ...] = ()
+    certifications: tuple[str, ...] = ()
+    experience: tuple[CVExperience, ...] = ()
+    education: tuple[str, ...] = ()

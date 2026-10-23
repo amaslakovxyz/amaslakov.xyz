@@ -75,3 +75,9 @@
 .about .divider { color: var(--border); font-family: var(--mono); font-size: .9rem;
   letter-spacing: .08em; overflow: hidden; white-space: nowrap; margin: 0 0 1.2rem; }
 .about .divider b { color: var(--accent); }
+
+/* about section heading + empty state; inline location clock */
+.about-h { font-size: .78rem; font-family: var(--mono); text-transform: lowercase;
+  letter-spacing: .04em; color: var(--muted); margin: 0 0 .6rem; }
+.about-soon { color: var(--muted); font-family: var(--mono); font-size: .85rem; margin: 0; }
+.nf-info .clk { color: var(--c-cyan); }

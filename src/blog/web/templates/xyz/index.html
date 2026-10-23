@@ -8,13 +8,11 @@
     <img class="avatar" src="/static/img/anton-pixel.png" width="150" height="150"
          alt="Anton — pixel art">
     <div class="nf-info">
-      <div><span class="k">role</span><span class="v">{{ site.role }}</span></div>
-      <div><span class="k">now</span><span class="v">{{ site.now }}</span></div>
       {% if site.location %}
-      <div><span class="k">loc</span><span class="v"><span class="pin">◉</span> {{ site.location.label }}
-        <span class="dim">{{ site.location.coords }}</span></span></div>
-      <div><span class="k">local</span><span class="v" id="clk"
-        data-tz="{{ site.location.tz }}">··:··:··</span> <span class="dim">· roaming</span></div>
+      <div><span class="k">location</span><span class="v"><span class="pin">◉</span>
+        {{ site.location.label }} <span class="dim">{{ site.location.coords }}</span>
+        <span class="dim">·</span> <span class="clk" id="clk"
+          data-tz="{{ site.location.tz }}">··:··:··</span></span></div>
       {% endif %}
     </div>
   </div>
@@ -36,12 +34,15 @@
   {% endif %}
 </section>
 
-{% if site.about %}
 <section class="about">
   <div class="divider" aria-hidden="true">╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌ <b>◆</b> ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌</div>
+  <h2 class="about-h">~ cat about.md</h2>
+  {% if site.about %}
   <div class="prose">{{ site.about }}</div>
+  {% else %}
+  <p class="about-soon">(coming soon)</p>
+  {% endif %}
 </section>
-{% endif %}
 
 <script>
 (function(){

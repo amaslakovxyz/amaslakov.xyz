@@ -85,6 +85,9 @@ def test_home_renders_hero() -> None:
     assert 'class="reel"' in r.text  # location slot-reel
     assert "Tokyo, JP" in r.text  # a reel city
     assert "reel-final" in r.text  # lands on current location
+    assert 'class="worldmap"' in r.text  # ANSI world map
+    assert "wm-pin" in r.text  # location pin on the map
+    assert "locate --me" in r.text
 
 
 def test_home_has_booking_button() -> None:

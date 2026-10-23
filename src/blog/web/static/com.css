@@ -63,3 +63,10 @@
   text-decoration: none; font-weight: 600;
   background: linear-gradient(100deg, var(--accent), var(--accent2)); }
 .book-btn:hover { text-decoration: none; filter: brightness(1.08); }
+
+/* open-to */
+.cv-opento { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; margin: .3rem 0 .6rem; padding: 0; }
+.cv-opento li { font-family: var(--mono); font-size: .8rem; color: var(--fg);
+  border: 1px solid var(--accent); border-radius: 7px; padding: .18rem .6rem;
+  background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.cv-opento-note { color: var(--muted); font-size: .85rem; margin: .3rem 0 0; }

@@ -87,6 +87,8 @@ class CV:
     email: str = ""
     links: tuple[tuple[str, str], ...] = ()  # (label, url)
     summary: tuple[str, ...] = ()  # paragraphs
+    open_to: tuple[str, ...] = ()  # role types sought
+    open_to_note: str = ""
     key_contributions: tuple[str, ...] = ()
     skills: tuple[CVSkillGroup, ...] = ()
     certifications: tuple[str, ...] = ()

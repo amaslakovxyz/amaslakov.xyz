@@ -1,7 +1,7 @@
 # Structured CV — source of truth for amaslakov.com (/ and /cv).
-# Schema: blog.shell.schema.CVDocument. Ported from 02-areas/CV/main-cv.
+# Schema: blog.shell.schema.CVDocument. Synced from 02-areas/CV/main-cv.
 name: "Anton Maslakov"
-headline: "Solutions Engineer · Technical Lead — cloud, SRE, DevSecOps & backend"
+headline: "Solutions Engineer · Technical Lead — cloud, DevSecOps & backend"
 location: "Tbilisi, GE"
 email: "amaslakov@icloud.com"
 links:
@@ -10,47 +10,46 @@ links:
   - ["Telegram", "https://t.me/amaslakovxyz"]
 
 summary:
-  - "Solutions Engineer and technical lead: 9 years across cloud infrastructure, SRE, DevSecOps, and backend. Launches zero-to-one projects where infrastructure and product constraints must be balanced across engineering, security, and business stakeholders."
-  - "I work across the full solution lifecycle — from requirements discovery and technical research to architecture, implementation, and production delivery."
+  - "Solutions engineer and tech leader: 9 years across cloud infrastructure, DevSecOps, and backend development. Launching zero-to-one projects where infrastructure and product constraints must be balanced across product engineering, security, and business stakeholders."
+
+open_to:
+  - "Platform Engineering / DevSecOps"
+  - "Technical Product Ownership & Delivery"
+  - "Forward Deployed Engineering / AI Infrastructure & Security"
+  - "Pre-sales / Solutions Architecture"
+open_to_note: "Customer-facing, travel-heavy roles welcome: on-site deployments, workshops, and field engineering."
 
 key_contributions:
   - "Lido.fi — Landed an A-rated Web3SOC certification for the #1 ETH staking protocol; led a cross-functional team across DevOps, SecOps, on-chain & development, QA, and legal."
-  - "Kitchenhub — Stabilized a 30+ microservice platform: cut downtime by 90% with SRE practices and deployment time by 40% through unified release management, while growing the team from 3 to 12."
-  - "Deserw — Took a football scouting startup from idea to live product as technical co-founder, owning architecture, backend, infrastructure, and product iteration."
+  - "Kitchenhub — Stabilized a 30+ microservice platform: cut downtime by 90% with SRE practices and deployment time by 40% through unified release management, while growing the engineering team from 3 to 12."
+  - "Deserw — Co-founded a football scouting startup and shipped 5 MVP iterations with a 3-engineer team, owning architecture, backend, and cloud infrastructure while running demos with clubs and partners."
 
 skills:
   - label: "Solution Architecture"
     items: ["Discovery", "Solution design", "Technical research", "Trade-off analysis", "Prototyping", "Production rollout"]
-  - label: "Cloud & Orchestration"
-    items: ["On-prem", "GCP", "AWS", "Kubernetes", "Docker", "Cloud Run"]
-  - label: "Infrastructure as Code"
-    items: ["Terraform", "Ansible", "Bash"]
-  - label: "CI/CD"
-    items: ["Jenkins", "GitLab CI", "Helm", "Argo CD", "GitHub Actions", "GitOps"]
-  - label: "Observability"
-    items: ["Prometheus", "Grafana", "Promtail", "Loki", "Sentry", "OpenTelemetry", "SLI/SLO"]
-  - label: "Networking"
-    items: ["Istio", "Nginx", "DNS", "Cloudflare"]
-  - label: "Security"
-    items: ["IAM", "RBAC", "NetworkPolicy", "Kyverno"]
-  - label: "Backend"
-    items: ["Python", "Flask", "FastAPI", "SQL", "Git"]
-  - label: "Frontend"
-    items: ["React", "JS", "HTMX", "Alpine.js"]
   - label: "AI-Assisted Engineering"
-    items: ["Claude", "Codex", "MCP + agent/tool workflows", "Embeddings", "Sandboxing"]
-  - label: "Leadership & Delivery"
-    items: ["Technical project management", "Team management", "Hiring & coaching", "Scrum / Kanban", "Security audits & remediation"]
+    items: ["Secure AI-assisted dev policies", "Agent sandboxing", "Permission gating", "MCP tool governance", "Claude/Codex workflows"]
+  - label: "Cloud & Platform"
+    items: ["GCP", "AWS", "On-prem", "Kubernetes", "Docker", "Cloud Run", "Terraform", "Ansible", "Istio", "Nginx", "Cloudflare"]
+  - label: "CI/CD & GitOps"
+    items: ["GitHub Actions", "GitLab CI", "Argo CD", "Helm", "Jenkins"]
+  - label: "Observability"
+    items: ["Prometheus", "Grafana", "Loki", "OpenTelemetry", "Sentry", "SLI/SLO"]
+  - label: "Security"
+    items: ["Threat modeling", "Security policies", "IAM", "RBAC", "Gap analysis", "Remediation coordination"]
+  - label: "Development"
+    items: ["Python (Flask, FastAPI)", "SQL", "React", "JS", "HTMX"]
+  - label: "Delivery Leadership"
+    items: ["Cross-functional delivery", "Specifications", "OKRs", "Roadmaps", "Delivery timelines"]
+  - label: "Team & Stakeholders"
+    items: ["Team scaling (3 → 12)", "Hiring & interviews", "One-to-ones", "Coaching", "C-level", "External auditors", "On-site conferences & partner meetings"]
   - label: "Languages"
     items: ["English (C1)", "Belarusian (native)", "Russian (native)"]
-
-certifications:
-  - "Google Cloud Professional Cloud Architect (2019)"
 
 experience:
   - org: "Lido.fi"
     url: "https://lido.fi"
-    role: "Delivery Manager in DevSecOps (Infrastructure Manager)"
+    role: "Delivery in DevSecOps"
     period: "Aug 2024 – Jun 2026"
     summary: "Owned end-to-end delivery of infrastructure and security projects across DevOps and SecOps at the #1 ETH staking protocol; drove DevSecOps audits and OKRs from research through production."
     highlights:
@@ -115,3 +114,4 @@ experience:
 
 education:
   - "B.Sc. Computer Science — Belarusian State University of Informatics and Radioelectronics, Minsk · 2014–2018"
+  - "Google Cloud Professional Cloud Architect (2019)"

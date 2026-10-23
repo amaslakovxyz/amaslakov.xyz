@@ -23,6 +23,14 @@
   </section>
   {% endif %}
 
+  {% if cv.open_to %}
+  <section class="cv-sec">
+    <h2 class="cv-h">open to</h2>
+    <ul class="cv-opento">{% for o in cv.open_to %}<li>{{ o }}</li>{% endfor %}</ul>
+    {% if cv.open_to_note %}<p class="cv-opento-note">{{ cv.open_to_note }}</p>{% endif %}
+  </section>
+  {% endif %}
+
   {% if cv.key_contributions %}
   <section class="cv-sec">
     <h2 class="cv-h">highlights</h2>

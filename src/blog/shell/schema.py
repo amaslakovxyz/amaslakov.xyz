@@ -60,6 +60,8 @@ class CVDocument(BaseModel):
     email: str = ""
     links: list[tuple[str, str]] = Field(default_factory=list)
     summary: list[str] = Field(default_factory=list)
+    open_to: list[str] = Field(default_factory=list)
+    open_to_note: str = ""
     key_contributions: list[str] = Field(default_factory=list)
     skills: list[CVSkillGroupDoc] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
@@ -74,6 +76,8 @@ class CVDocument(BaseModel):
             email=self.email,
             links=tuple((label, url) for label, url in self.links),
             summary=tuple(self.summary),
+            open_to=tuple(self.open_to),
+            open_to_note=self.open_to_note,
             key_contributions=tuple(self.key_contributions),
             skills=tuple(
                 CVSkillGroup(label=g.label, items=tuple(g.items)) for g in self.skills

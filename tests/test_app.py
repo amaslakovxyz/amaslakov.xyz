@@ -79,6 +79,9 @@ def test_home_renders_hero() -> None:
     assert "x.com/amaslak0v" in r.text  # X social link
     assert "strava.com/athletes" in r.text  # strava social link
     assert ">rss<" not in r.text  # rss not surfaced yet
+    assert ">location<" in r.text  # loc row renamed to "location"
+    assert "cat about.md" in r.text  # about section present
+    assert "FDE / DevSecOps" not in r.text  # role/now moved off xyz (→ com)
 
 
 def test_home_has_booking_button() -> None:

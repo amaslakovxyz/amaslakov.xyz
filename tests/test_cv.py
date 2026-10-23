@@ -28,3 +28,10 @@ def test_load_cv_reads_com_file() -> None:
 
 def test_load_cv_absent_for_xyz() -> None:
     assert load_cv(Settings().content_root, SITES["xyz"]) is None
+
+
+def test_experience_logo_derived_from_url() -> None:
+    cv = load_cv(Settings().content_root, SITES["com"])
+    assert cv is not None
+    lido = next(e for e in cv.experience if "Lido" in e.org)
+    assert lido.logo == "https://logo.clearbit.com/lido.fi"

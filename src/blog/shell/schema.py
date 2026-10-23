@@ -3,10 +3,20 @@
 from __future__ import annotations
 
 from datetime import date
+from urllib.parse import urlsplit
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from blog.core.models import CV, CVExperience, CVSkillGroup, PostMeta
+
+
+def _logo_for(url: str) -> str:
+    """Company logo URL (Clearbit) derived from an experience link; "" if none."""
+    if not url:
+        return ""
+    netloc = urlsplit(url if "//" in url else f"//{url}").netloc
+    host = netloc.split("@")[-1].split(":")[0].removeprefix("www.")
+    return f"https://logo.clearbit.com/{host}" if host else ""
 
 
 class PostFrontmatter(BaseModel):
@@ -89,6 +99,7 @@ class CVDocument(BaseModel):
                     role=e.role,
                     period=e.period,
                     url=e.url,
+                    logo=_logo_for(e.url),
                     summary=e.summary,
                     highlights=tuple(e.highlights),
                     stack=e.stack,

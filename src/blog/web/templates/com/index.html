@@ -40,18 +40,28 @@
 
   {% if cv.experience %}
   <section class="cv-sec">
-    <h2 class="cv-h">experience</h2>
+    <h2 class="cv-h">experience <span class="cv-hint">· click to expand</span></h2>
     {% for e in cv.experience %}
-    <div class="cv-exp">
-      <div class="cv-exp-top">
-        <span class="cv-org">{% if e.url %}<a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.org }}</a>{% else %}{{ e.org }}{% endif %}</span>
+    <details class="cv-exp"{% if loop.first %} open{% endif %}>
+      <summary class="cv-exp-row">
+        {% if e.url %}<a class="cv-logo-link" href="{{ e.url }}" target="_blank" rel="noopener"
+          onclick="event.stopPropagation()" aria-label="{{ e.org }}">{% endif %}
+        <span class="cv-logo-box"><span class="cv-logo-mono">{{ e.org[0] }}</span>
+          {% if e.logo %}<img class="cv-logo" src="{{ e.logo }}" alt="" loading="lazy" onerror="this.remove()">{% endif %}
+        </span>
+        {% if e.url %}</a>{% endif %}
+        <span class="cv-exp-head">
+          <span class="cv-org">{{ e.org }}</span>
+          <span class="cv-role">{{ e.role }}</span>
+        </span>
         <span class="cv-period">{{ e.period }}</span>
+      </summary>
+      <div class="cv-exp-body">
+        {% if e.summary %}<p class="cv-exp-sum">{{ e.summary }}</p>{% endif %}
+        {% if e.highlights %}<ul class="cv-list">{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
+        {% if e.stack %}<p class="cv-stack"><span class="cv-stack-k">stack:</span> {{ e.stack }}</p>{% endif %}
       </div>
-      <div class="cv-role">{{ e.role }}</div>
-      {% if e.summary %}<p class="cv-exp-sum">{{ e.summary }}</p>{% endif %}
-      {% if e.highlights %}<ul class="cv-list">{% for h in e.highlights %}<li>{{ h }}</li>{% endfor %}</ul>{% endif %}
-      {% if e.stack %}<p class="cv-stack"><span class="cv-stack-k">stack:</span> {{ e.stack }}</p>{% endif %}
-    </div>
+    </details>
     {% endfor %}
   </section>
   {% endif %}

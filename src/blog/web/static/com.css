@@ -33,18 +33,34 @@
 .cv-list li { margin: .35rem 0; }
 .cv-list li::marker { color: var(--accent); }
 
-/* experience */
-.cv-exp { padding: .9rem 0; border-bottom: 1px solid var(--border); }
-.cv-exp:last-child { border-bottom: 0; }
-.cv-exp-top { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; flex-wrap: wrap; }
-.cv-org { font-weight: 700; font-size: 1.05rem; }
-.cv-org a { color: var(--fg); text-decoration: none; }
-.cv-org a:hover { color: var(--accent); }
-.cv-period { font-family: var(--mono); font-size: .78rem; color: var(--muted); white-space: nowrap; }
-.cv-role { color: var(--accent2); font-size: .9rem; margin-bottom: .3rem; }
-.cv-exp-sum { color: var(--fg); margin: .3rem 0; }
+/* experience — collapsible with company logos */
+.cv-hint { font-family: var(--mono); font-size: .62rem; color: var(--muted); letter-spacing: .04em; text-transform: none; }
+details.cv-exp { border-bottom: 1px solid var(--border); }
+details.cv-exp:last-child { border-bottom: 0; }
+summary.cv-exp-row { list-style: none; cursor: pointer; display: flex; align-items: center;
+  gap: .75rem; padding: .7rem 0; }
+summary.cv-exp-row::-webkit-details-marker { display: none; }
+summary.cv-exp-row::after { content: "+"; font-family: var(--mono); color: var(--muted);
+  width: 1.2ch; text-align: center; flex: 0 0 auto; }
+details[open] > summary.cv-exp-row::after { content: "\2212"; }  /* minus */
+summary.cv-exp-row:hover .cv-org { color: var(--accent); }
+
+.cv-logo-link { display: inline-flex; flex: 0 0 auto; }
+.cv-logo-box { position: relative; flex: 0 0 auto; width: 38px; height: 38px; border-radius: 8px;
+  background: #fff; border: 1px solid var(--border); display: grid; place-items: center; overflow: hidden; }
+.cv-logo-mono { font-family: var(--mono); font-weight: 700; color: #2a3140; font-size: 1.05rem; }
+.cv-logo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 5px; background: #fff; }
+
+.cv-exp-head { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: .05rem; }
+.cv-exp-head .cv-org { font-weight: 700; font-size: 1rem; }
+.cv-exp-head .cv-role { color: var(--accent2); font-size: .82rem; }
+.cv-period { font-family: var(--mono); font-size: .76rem; color: var(--muted); white-space: nowrap; flex: 0 0 auto; }
+
+.cv-exp-body { padding: 0 0 1rem 3.1rem; }
+.cv-exp-sum { color: var(--fg); margin: .1rem 0 .4rem; }
 .cv-stack { font-family: var(--mono); font-size: .76rem; color: var(--muted); margin: .5rem 0 0; line-height: 1.5; }
 .cv-stack-k { color: var(--accent); }
+@media (max-width: 540px) { .cv-exp-body { padding-left: 0; } }
 
 /* skills */
 .cv-skills { margin: 0; }

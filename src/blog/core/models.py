@@ -68,6 +68,7 @@ class CVExperience:
     role: str
     period: str
     url: str = ""
+    logo: str = ""  # logo image URL (derived from url)
     summary: str = ""
     highlights: tuple[str, ...] = ()
     stack: str = ""

@@ -10,7 +10,8 @@
     <div class="nf-info">
       {% if site.location %}
       <div><span class="k">location</span><span class="v"><span class="pin">◉</span>
-        {{ site.location.label }} <span class="dim">{{ site.location.coords }}</span>
+        <span class="reel" id="reel"><span class="reel-track">{% for _ in range(3) %}{% for c in site.location_reel %}<span class="reel-item">{{ c }}</span>{% endfor %}{% endfor %}<span class="reel-item reel-final">{{ site.location.label }}</span></span></span>
+        <span class="dim">{{ site.location.coords }}</span>
         <span class="dim">·</span> <span class="clk" id="clk"
           data-tz="{{ site.location.tz }}">··:··:··</span></span></div>
       {% endif %}
@@ -55,6 +56,22 @@
     }catch(e){ el.textContent='--:--:--'; }
   }
   tick(); setInterval(tick,1000);
+})();
+
+(function(){
+  var reel=document.getElementById('reel'); if(!reel) return;
+  var track=reel.querySelector('.reel-track');
+  var h=reel.clientHeight;
+  var last=track.children.length-1;
+  var end='translateY('+(-last*h)+'px)';
+  if(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches){
+    track.style.transform=end; return;
+  }
+  track.style.transform='translateY(0)';
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+    track.style.transition='transform 2.9s cubic-bezier(.12,.78,.18,1)';
+    track.style.transform=end;
+  }); });
 })();
 </script>
 {% endblock %}

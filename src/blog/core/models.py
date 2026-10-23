@@ -41,6 +41,7 @@ class SiteConfig:
     now: str = ""
     stack: tuple[str, ...] = ()
     location: Location | None = None
+    location_reel: tuple[str, ...] = ()  # cities the hero reel spins through
     links: Links = Links()
     booking_url: str | None = None  # e.g. "https://cal.com/amaslakov/30min"
     about: str = ""  # free-form "about me" paragraph shown below the hero

@@ -81,3 +81,10 @@
   letter-spacing: .04em; color: var(--muted); margin: 0 0 .6rem; }
 .about-soon { color: var(--muted); font-family: var(--mono); font-size: .85rem; margin: 0; }
 .nf-info .clk { color: var(--c-cyan); }
+
+/* location slot-reel */
+.reel { display: inline-block; height: 1.5em; line-height: 1.5em; overflow: hidden;
+  vertical-align: bottom; }
+.reel-track { display: block; will-change: transform; }
+.reel-item { display: block; height: 1.5em; line-height: 1.5em; white-space: nowrap; color: var(--muted); }
+.reel-final { color: var(--fg); }

@@ -16,6 +16,17 @@ SITES: dict[SiteId, SiteConfig] = {
         role="FDE / DevSecOps",
         now="shipping amaslakov.xyz",  # edit this "what now" line in sites.py
         location=Location(label="Tbilisi, GE", coords="41.7°N 44.8°E", tz="Asia/Tbilisi"),
+        location_reel=(
+            "Tokyo, JP",
+            "Cape Town, ZA",
+            "Buenos Aires, AR",
+            "Bali, ID",
+            "Bangkok, TH",
+            "Kathmandu, NP",
+            "Lisbon, PT",
+            "Istanbul, TR",
+            "Mexico City, MX",
+        ),
         links=Links(
             github="https://github.com/amaslakovxyz",
             linkedin="https://ge.linkedin.com/in/amaslakov",

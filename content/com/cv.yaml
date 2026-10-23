@@ -1,0 +1,117 @@
+# Structured CV — source of truth for amaslakov.com (/ and /cv).
+# Schema: blog.shell.schema.CVDocument. Ported from 02-areas/CV/main-cv.
+name: "Anton Maslakov"
+headline: "Solutions Engineer · Technical Lead — cloud, SRE, DevSecOps & backend"
+location: "Tbilisi, GE"
+email: "amaslakov@icloud.com"
+links:
+  - ["LinkedIn", "https://www.linkedin.com/in/amaslakov"]
+  - ["GitHub", "https://github.com/amaslakovxyz"]
+  - ["Telegram", "https://t.me/amaslakovxyz"]
+
+summary:
+  - "Solutions Engineer and technical lead: 9 years across cloud infrastructure, SRE, DevSecOps, and backend. Launches zero-to-one projects where infrastructure and product constraints must be balanced across engineering, security, and business stakeholders."
+  - "I work across the full solution lifecycle — from requirements discovery and technical research to architecture, implementation, and production delivery."
+
+key_contributions:
+  - "Lido.fi — Landed an A-rated Web3SOC certification for the #1 ETH staking protocol; led a cross-functional team across DevOps, SecOps, on-chain & development, QA, and legal."
+  - "Kitchenhub — Stabilized a 30+ microservice platform: cut downtime by 90% with SRE practices and deployment time by 40% through unified release management, while growing the team from 3 to 12."
+  - "Deserw — Took a football scouting startup from idea to live product as technical co-founder, owning architecture, backend, infrastructure, and product iteration."
+
+skills:
+  - label: "Solution Architecture"
+    items: ["Discovery", "Solution design", "Technical research", "Trade-off analysis", "Prototyping", "Production rollout"]
+  - label: "Cloud & Orchestration"
+    items: ["On-prem", "GCP", "AWS", "Kubernetes", "Docker", "Cloud Run"]
+  - label: "Infrastructure as Code"
+    items: ["Terraform", "Ansible", "Bash"]
+  - label: "CI/CD"
+    items: ["Jenkins", "GitLab CI", "Helm", "Argo CD", "GitHub Actions", "GitOps"]
+  - label: "Observability"
+    items: ["Prometheus", "Grafana", "Promtail", "Loki", "Sentry", "OpenTelemetry", "SLI/SLO"]
+  - label: "Networking"
+    items: ["Istio", "Nginx", "DNS", "Cloudflare"]
+  - label: "Security"
+    items: ["IAM", "RBAC", "NetworkPolicy", "Kyverno"]
+  - label: "Backend"
+    items: ["Python", "Flask", "FastAPI", "SQL", "Git"]
+  - label: "Frontend"
+    items: ["React", "JS", "HTMX", "Alpine.js"]
+  - label: "AI-Assisted Engineering"
+    items: ["Claude", "Codex", "MCP + agent/tool workflows", "Embeddings", "Sandboxing"]
+  - label: "Leadership & Delivery"
+    items: ["Technical project management", "Team management", "Hiring & coaching", "Scrum / Kanban", "Security audits & remediation"]
+  - label: "Languages"
+    items: ["English (C1)", "Belarusian (native)", "Russian (native)"]
+
+certifications:
+  - "Google Cloud Professional Cloud Architect (2019)"
+
+experience:
+  - org: "Lido.fi"
+    url: "https://lido.fi"
+    role: "Delivery Manager in DevSecOps (Infrastructure Manager)"
+    period: "Aug 2024 – Jun 2026"
+    summary: "Owned end-to-end delivery of infrastructure and security projects across DevOps and SecOps at the #1 ETH staking protocol; drove DevSecOps audits and OKRs from research through production."
+    highlights:
+      - "Delivered secure, production-ready Kubernetes from scratch for 7 development teams with 40+ services, enabling cloud-agnostic infrastructure and independent team deployments."
+      - "Landed the Web3SOC assessment to an A rating as audit lead and technical researcher over an 8-month engagement: control evidence, assessment responses, security policies, control-gap and attack-vector analysis, remediation through QA and production."
+      - "Shipped an on-chain/off-chain observability stack, black-box monitoring for development teams, and fault-tolerant routing for RPC integrations."
+      - "Rolled out a company-wide internal VPN, self-hosted IPFS infrastructure, and Web2 security hardening with Terraform."
+    stack: "Kubernetes (ArgoCD, Kyverno, OpenBao, Cilium, Harbor, Trivy, Falco, Kubespray), Ansible, Terraform, GCP, RPCs, GitHub Actions"
+
+  - org: "Kitchenhub"
+    url: "https://www.trykitchenhub.com/"
+    role: "Engineering Manager (Head of Engineering, reporting to CEO)"
+    period: "Dec 2022 – Jun 2024"
+    summary: "Led a 12-person engineering team across frontend, backend, QA, and DevOps for a US delivery-marketplace aggregator; owned technical decisions and delivery timeline, balancing features with reliability and tech debt."
+    highlights:
+      - "Adopted platform-engineering practices across 30+ microservices, reducing downtime by 90%."
+      - "Stabilized release management (unified GitFlow, changelogs, staging/prod split, IaC), cutting deployment time by 40%; introduced SRE practices — observability, SLI/SLOs, alerting, on-call, runbooks, support KB."
+      - "Built and managed the engineering team; introduced Scrum, roadmap planning, hiring and technical interviews, one-to-ones, coaching, retrospectives."
+    stack: "Python, FastAPI, React, JS, Docker, Sentry, Prometheus; GCP: Cloud Run, VPC, IAM, Compute Engine, Cloud SQL, Monitoring/Logging, Secret Manager, Cloud Build, Load Balancing, Cloud NAT, Pub/Sub"
+
+  - org: "Deserw"
+    url: "https://deserw.com/"
+    role: "Technical Co-Founder"
+    period: "Aug 2019 – Nov 2023"
+    summary: "Co-founded a football scouting and digital-transfers startup, combining product planning, backend development, and infrastructure ownership through multiple MVP iterations."
+    highlights:
+      - "Designed and built architecture from scratch: backend services, cloud infrastructure, deployments, on-call."
+      - "Ran external demos and translated feedback from prospective users and partners into prototypes and delivery plans."
+      - "Balanced engineering scope with budget and prototyping needs."
+    stack: "Python, Flask, PostgreSQL, GCP (Cloud Run), Docker Compose, Nginx, Stripe, React, JS, Vite; AWS: EKS, VPC, IAM, EC2, S3, RDS, CloudWatch, Secrets Manager, ECR, Route 53, ALB/NLB, ECS, Lambda, SQS/SNS, CloudFront"
+
+  - org: "WorkFusion"
+    url: "https://www.workfusion.com/"
+    role: "DevOps Engineer"
+    period: "Jun 2019 – May 2021"
+    summary: "Managed cloud and on-premises infrastructure for an enterprise automation platform, focusing on CI/CD, environment provisioning, and reliability."
+    highlights:
+      - "Built CI/CD pipelines for Java services and automated environment provisioning."
+      - "Contributed to AWS migration and infrastructure cost optimization."
+      - "Introduced chaos engineering practices to identify resilience issues."
+    stack: "AWS, Jenkins, Groovy, Terraform, Ansible, Packer, Docker, Python, Mangle, Gremlin"
+
+  - org: "EPAM Systems — Infoblox"
+    url: "https://www.epam.com/"
+    role: "DevOps Engineer"
+    period: "Oct 2017 – Jul 2019"
+    summary: "Supported a SaaS product team (security analysis and network visualization): microservices support and CI/CD."
+    highlights:
+      - "Developed and supported Spinnaker pipelines for Kubernetes deployments."
+      - "Contributed to Kubernetes resource optimization and AWS→GCP migration."
+    stack: "AWS, GCP, Kubernetes, Helm, Terraform, Docker, Jenkins, Spinnaker, Python, Bash"
+
+  - org: "EPAM Systems — Internal Systems"
+    url: "https://www.epam.com/"
+    role: "Junior Systems Engineer"
+    period: "Oct 2017 – Jul 2019"
+    summary: "L3 support and on-call coverage for internal engineering services."
+    highlights:
+      - "Automated access requests and recurring support tasks."
+      - "Contributed to GitLab cloud migration, disaster-recovery automation, and operational documentation."
+    stack: "GitLab, Jenkins, Artifactory, Crucible, Python, Ansible, Bash, Linux, Nginx"
+
+education:
+  - "B.Sc. Computer Science — Belarusian State University of Informatics and Radioelectronics, Minsk · 2014–2018"

@@ -24,7 +24,7 @@
   <header class="site-header">
     <a class="brand" href="/">{{ site.title }}</a>
     <nav>
-      <a href="/{{ site.collection }}">{{ site.collection }}</a>
+      {% if site.site_id != "com" %}<a href="/{{ site.collection }}">{{ site.collection }}</a>{% endif %}
       <button type="button" class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">◐</button>
     </nav>
   </header>

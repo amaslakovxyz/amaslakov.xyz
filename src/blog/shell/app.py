@@ -16,7 +16,7 @@ from blog.core.sitemap import render_sitemap
 from blog.core.sites import SITES, resolve_site
 from blog.shell.buildinfo import build_status
 from blog.shell.config import Settings, get_settings
-from blog.shell.loader import load_posts
+from blog.shell.loader import load_cv, load_posts
 
 _WEB = Path(__file__).resolve().parent.parent / "web"
 _templates = Jinja2Templates(directory=str(_WEB / "templates"))
@@ -48,8 +48,21 @@ def create_app() -> FastAPI:
     def index(request: Request) -> Response:
         site = _site_for(request)
         posts = _load(request, site)
+        cv = load_cv(request.app.state.settings.content_root, site)
         return _templates.TemplateResponse(
-            request, f"{site.site_id}/index.html", {"site": site, "posts": posts[:5]}
+            request,
+            f"{site.site_id}/index.html",
+            {"site": site, "posts": posts[:5], "cv": cv},
+        )
+
+    @app.get("/cv", response_class=HTMLResponse)
+    def cv_page(request: Request) -> Response:
+        site = _site_for(request)
+        cv = load_cv(request.app.state.settings.content_root, site)
+        if cv is None:
+            raise HTTPException(status_code=404)
+        return _templates.TemplateResponse(
+            request, f"{site.site_id}/index.html", {"site": site, "posts": (), "cv": cv}
         )
 
 

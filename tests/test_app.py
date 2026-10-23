@@ -82,6 +82,9 @@ def test_home_renders_hero() -> None:
     assert ">location<" in r.text  # loc row renamed to "location"
     assert "cat about.md" in r.text  # about section present
     assert "FDE / DevSecOps" not in r.text  # role/now moved off xyz (→ com)
+    assert 'class="reel"' in r.text  # location slot-reel
+    assert "Tokyo, JP" in r.text  # a reel city
+    assert "reel-final" in r.text  # lands on current location
 
 
 def test_home_has_booking_button() -> None:
